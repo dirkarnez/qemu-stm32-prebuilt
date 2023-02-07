@@ -15,9 +15,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - run: mkdir -p ./workspace
-      
       - run: mkdir -p ./build_output
+            
+      - uses: actions/checkout@v3
+        with:
+          # Repository name with owner. For example, actions/checkout
+          # Default: ${{ github.repository }}
+          repository: https://github.com/beckus/qemu_stm32.git
+          path: build_output
+          submodules: true
+          ref: stm32_v0.1.3
       
       - name: Build the stack
         run: docker-compose up --build && docker-compose down
