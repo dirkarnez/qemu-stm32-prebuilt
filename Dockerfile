@@ -11,6 +11,7 @@ RUN apt-get update -y && \
    build-essential \
    git \
    apt-utils \
+   python3.6 \ 
    gcc-11 \
    g++-11 \
    libstdc++-11-dev \
