@@ -12,7 +12,8 @@ RUN apt-get update -y && \
    python2 \
    pkg-config \
    python-is-python2 \
-   zlib \
+   zlib1g \
+   zlib1g-dev \
    git \
    apt-utils \
    gcc-11 \
