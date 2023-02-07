@@ -44,12 +44,7 @@ VOLUME mkdir -p /tmp/build_output
 VOLUME /src/workspace
 VOLUME /tmp/build_output
 
-#   git submodule update --init --recursive && \
-
 CMD cd /src/workspace && \
-   git clone --recursive https://github.com/beckus/qemu_stm32.git && \
-   cd qemu_stm32 && \
-   git checkout stm32_v0.1.3 && \
    ./configure --enable-debug --target-list="arm-softmmu" --prefix=/tmp/build_output && \
    make && \
    cd /tmp/build_output && \
