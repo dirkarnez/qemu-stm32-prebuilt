@@ -48,7 +48,7 @@ VOLUME /tmp/build_output
 CMD cd /src/workspace && \
    git clone https://github.com/beckus/qemu_stm32.git && \
    cd qemu_stm32 && \
-   sed.exe -i "s/git:\/\//https:\/\//g" .gitmodules && \
+   sed -i "s/git:\/\//https:\/\//g" .gitmodules && \
    git checkout stm32_v0.1.3 && \
    git submodule update --init --recursive && \
    echo "$(<.gitmodules)" && \
