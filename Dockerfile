@@ -10,6 +10,7 @@ RUN apt-get update -y && \
    apt-get -y --no-install-recommends --allow-unauthenticated install \
    build-essential \
    python2 \
+   pkg-config \
    python-is-python2 \
    git \
    apt-utils \
