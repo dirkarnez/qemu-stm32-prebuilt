@@ -17,12 +17,12 @@ jobs:
       
       - run: mkdir -p ./build_output
             
-      - uses: actions/checkout@v3
-        with:
-          repository: beckus/qemu_stm32.git
-          path: build_output
-          submodules: true
-          ref: stm32_v0.1.3
+#       - uses: actions/checkout@v3
+#         with:
+#           repository: beckus/qemu_stm32.git
+#           path: build_output
+#           submodules: true
+#           ref: stm32_v0.1.3
       
       - name: Build the stack
         run: docker-compose up --build && docker-compose down
