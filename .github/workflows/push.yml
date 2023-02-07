@@ -1,0 +1,37 @@
+name: docker-compose-actions-workflow
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+      - 'c*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      libraryName: qemu-stm32
+      targetZip: qemu-stm32-${{ github.ref_name }}.zip
+    steps:
+      - uses: actions/checkout@v3
+      
+      - run: mkdir -p ./workspace
+      
+      - run: mkdir -p ./build_output
+      
+      - name: Build the stack
+        run: docker-compose up --build && docker-compose down
+        
+#       - name: Archive Release
+#         uses: thedoctor0/zip-release@master
+#         with:
+#           type: 'zip'
+#           directory: "workspace/fhir"
+#           filename: "${{ env.targetZip }}"
+
+      - name: Release prebuilt
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build_output/${{ env.targetZip }}"
+          allowUpdates: true
+          token: ${{ secrets.GITHUB_TOKEN }}
