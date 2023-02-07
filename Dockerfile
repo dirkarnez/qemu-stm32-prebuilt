@@ -49,6 +49,7 @@ CMD cd /src/workspace && \
    git clone https://github.com/beckus/qemu_stm32.git && \
    cd qemu_stm32 && \
    sed -i "s/git:\/\//https:\/\//g" .gitmodules && \
+   sed -i "s/anongit.freedesktop.org\/pixman/github.com\/freedesktop\/pixman/g" .gitmodules && \
    git checkout stm32_v0.1.3 && \
    git submodule update --init --recursive && \
    echo "$(<.gitmodules)" && \
