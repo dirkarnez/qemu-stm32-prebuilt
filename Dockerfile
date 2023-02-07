@@ -46,11 +46,11 @@ VOLUME /tmp/build_output
 
 CMD cd /src/workspace && \
    git clone --recursive https://github.com/beckus/qemu_stm32.git && \
-   cd fhir && \
+   cd qemu_stm32 && \
    git checkout stm32_v0.1.3 && \
    git submodule update --init --recursive && \
    ./configure --enable-debug --target-list="arm-softmmu" --prefix=/tmp/build_output && \
-   make
+   make && \
    cd /tmp/build_output && \
-   zip --symlinks -r stm32-v0.1.3.zip . && \
+   zip --symlinks -r qemu-stm32-v0.1.3.zip . && \
    exit
