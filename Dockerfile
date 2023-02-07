@@ -12,6 +12,8 @@ RUN apt-get update -y && \
    python2 \
    pkg-config \
    python-is-python2 \
+   glib-2.12 \
+   gthread-2.0 \
    zlib1g \
    zlib1g-dev \
    git \
