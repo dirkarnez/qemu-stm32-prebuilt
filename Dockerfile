@@ -10,6 +10,7 @@ RUN apt-get update -y && \
    apt-get -y --no-install-recommends --allow-unauthenticated install \
    build-essential \
    python2 \
+   python-is-python2 \
    git \
    apt-utils \
    gcc-11 \
@@ -46,7 +47,8 @@ VOLUME mkdir -p /tmp/build_output
 VOLUME /src/workspace
 VOLUME /tmp/build_output
 
-CMD cd /src/workspace && \
+CMD /usr/bin/python2 -V && \
+   cd /src/workspace && \
    git clone https://github.com/beckus/qemu_stm32.git && \
    cd qemu_stm32 && \
    sed -i "s/git:\/\//https:\/\//g" .gitmodules && \
@@ -54,7 +56,7 @@ CMD cd /src/workspace && \
    git checkout stm32_v0.1.3 && \
    git submodule update --init --recursive && \
    echo "$(<.gitmodules)" && \
-   ./configure --enable-debug --target-list="arm-softmmu" --python=/usr/bin/python --prefix=/tmp/build_output && \
+   ./configure --enable-debug --target-list="arm-softmmu" --python=/usr/bin/python2 --prefix=/tmp/build_output && \
    make && \
    cd /tmp/build_output && \
    zip --symlinks -r qemu-stm32-v0.1.3.zip . && \
