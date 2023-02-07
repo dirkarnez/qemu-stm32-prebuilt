@@ -19,9 +19,7 @@ jobs:
             
       - uses: actions/checkout@v3
         with:
-          # Repository name with owner. For example, actions/checkout
-          # Default: ${{ github.repository }}
-          repository: https://github.com/beckus/qemu_stm32.git
+          repository: beckus/qemu_stm32.git
           path: build_output
           submodules: true
           ref: stm32_v0.1.3
