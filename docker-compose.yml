@@ -9,4 +9,5 @@ services:
     tty: true        # docker run -t
     user: root
     volumes:
+      - ./workspace:/src/workspace
       - ./build_output:/tmp/build_output
