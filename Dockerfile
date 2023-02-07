@@ -11,7 +11,6 @@ RUN apt-get update -y && \
    build-essential \
    git \
    apt-utils \
-   python3.6 \ 
    gcc-11 \
    g++-11 \
    libstdc++-11-dev \
@@ -54,7 +53,7 @@ CMD cd /src/workspace && \
    git checkout stm32_v0.1.3 && \
    git submodule update --init --recursive && \
    echo "$(<.gitmodules)" && \
-   ./configure --enable-debug --target-list="arm-softmmu" --prefix=/tmp/build_output && \
+   ./configure --enable-debug --target-list="arm-softmmu" --python=/usr/bin/python3 --prefix=/tmp/build_output && \
    make && \
    cd /tmp/build_output && \
    zip --symlinks -r qemu-stm32-v0.1.3.zip . && \
