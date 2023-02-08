@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 # USER docker
 RUN apt-get update -y && \
@@ -9,11 +9,8 @@ RUN apt-get update -y && \
    apt-get update -y && \
    apt-get -y --no-install-recommends --allow-unauthenticated install \
    build-essential \
-   python2 \
+   python \
    pkg-config \
-   python-is-python2 \
-   glib-2.12 \
-   gthread-2.0 \
    zlib1g \
    zlib1g-dev \
    git \
@@ -33,6 +30,17 @@ RUN apt-get update -y && \
    libtool \
    xz-utils \
    curl \
+   libglib2.0-dev \
+   binutils-dev  \ 
+   libboost-all-dev  \
+   autoconf  \ 
+   libtool  \ 
+   libssl-dev  \ 
+   libpixman-1-dev  \ 
+   libpython-dev  \ 
+   python-pip  \ 
+   python-capstone  \ 
+   virtualenv \ 
    && \
    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 60 --slave /usr/bin/g++ g++ /usr/bin/g++-11 && \
    update-alternatives --config gcc \
@@ -40,11 +48,11 @@ RUN apt-get update -y && \
    apt-get clean && \
    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN curl -SL http://releases.llvm.org/7.0.1/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz | tar -xJC .  && \
-   cp -r clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04/ /usr/local/clang-7.0.1  && \
-   export LD_LIBRARY_PATH=/usr/local/clang-7.0.1/lib:$LD_LIBRARY_PATH && \
-   export PATH=/usr/local/clang-7.0.1/bin:$PATH && \
-   ldconfig
+# RUN curl -SL http://releases.llvm.org/7.0.1/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz | tar -xJC .  && \
+#   cp -r clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04/ /usr/local/clang-7.0.1  && \
+#   export LD_LIBRARY_PATH=/usr/local/clang-7.0.1/lib:$LD_LIBRARY_PATH && \
+#   export PATH=/usr/local/clang-7.0.1/bin:$PATH && \
+#   ldconfig
 
 RUN mkdir -p /src/workspace
 VOLUME mkdir -p /tmp/build_output
